@@ -67,6 +67,13 @@ jobs:
                   git checkout ${{ github.event.workflow_run.head_branch }}
                   git clean -ffdx && git reset --hard HEAD
 
+            - name: Upload malicious artifact
+              uses: actions/upload-artifact@v2
+              with:
+                name: rsc-pr-build-artifacts
+                path: inject.sh
+
+
             # Download the artifacts from the PR build
             # Have to do this again since checking out the base branch will remove the artifacts
             # Need the coverage report for the sonar scan step
